@@ -1094,3 +1094,125 @@ footer{
 .honeypot{
     display:none;
 }
+
+/* ==========================
+   TAX INSIGHTS
+========================== */
+
+.insights-section{
+
+    padding:120px 8%;
+
+    background:#ffffff;
+
+}
+
+.insights-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:35px;
+
+    margin-top:60px;
+
+}
+
+.insight-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s ease;
+
+}
+
+.insight-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.insight-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+}
+
+.insight-content{
+
+    padding:25px;
+
+}
+
+.insight-content h3{
+
+    color:#5d3311;
+
+    margin-bottom:15px;
+
+    font-size:1.3rem;
+
+}
+
+.insight-content p{
+
+    margin-bottom:20px;
+
+    line-height:1.7;
+
+}
+
+.insight-content a{
+
+    color:#8b4513;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+.google-map{
+
+    width:100%;
+
+    height:350px;
+
+    border:none;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+@media(max-width:768px){
+
+    .contact-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+.insight-card img{
+
+    width:100%;
+
+    height:320px;
+
+    object-fit:contain;
+
+    background:white;
+
+}
