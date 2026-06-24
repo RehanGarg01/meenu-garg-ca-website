@@ -1112,14 +1112,14 @@ footer{
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
+    repeat(
+        auto-fit,
+        minmax(280px,1fr)
+    );
 
-    gap:35px;
-
-    margin-top:60px;
+    gap:30px;
 
 }
-
 .insight-card{
 
     background:#fff;
@@ -1470,6 +1470,53 @@ body{
     height:auto;
 
     object-fit:contain;
+
+    display:block;
+
+}
+@media (max-width:480px){
+
+    .logo-text h2{
+        font-size:0.85rem;
+    }
+
+    .logo-text span{
+        display:none;
+    }
+
+}
+@media(max-width:480px){
+
+    .google-map{
+        height:200px;
+    }
+
+}
+.faq-question{
+
+    line-height:1.5;
+
+}
+@media(max-width:768px){
+
+    .contact-form button{
+
+        width:100%;
+
+    }
+
+}
+@media(max-width:380px){
+
+    .hero h1{
+        font-size:1.6rem;
+    }
+
+}img{
+
+    max-width:100%;
+
+    height:auto;
 
     display:block;
 

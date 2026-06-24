@@ -263,8 +263,12 @@ function activeLink(){
 }
 
 /* ===================================
-   CONTACT FORM
+   EMAILJS CONTACT FORM
 =================================== */
+
+emailjs.init(
+    "v0j06FaIi4N71PUig"
+);
 
 const contactForm =
 document.querySelector(
@@ -294,18 +298,93 @@ if(contactForm){
             );
 
             return;
+
         }
 
-        alert(
-        "Thank you for contacting M/s Meenu Garg & Co. We will get back to you shortly."
+        const submitBtn =
+        contactForm.querySelector(
+        "button"
         );
 
-        contactForm.reset();
+        submitBtn.disabled =
+        true;
+
+        submitBtn.innerText =
+        "Sending...";
+
+        const templateParams = {
+
+            name:
+            document.getElementById(
+            "name"
+            ).value,
+
+            email:
+            document.getElementById(
+            "email"
+            ).value,
+
+            phone:
+            document.getElementById(
+            "phone"
+            ).value,
+
+            message:
+            document.getElementById(
+            "message"
+            ).value,
+
+            time:
+            new Date()
+            .toLocaleString()
+
+        };
+
+        emailjs.send(
+
+            "service_cz5ikno",
+
+            "template_zqj40wn",
+
+            templateParams
+
+        )
+
+        .then(() => {
+
+            alert(
+            "Thank you for contacting M/s Meenu Garg & Co. We will get back to you shortly."
+            );
+
+            contactForm.reset();
+
+        })
+
+        .catch((error) => {
+
+            console.error(
+            error
+            );
+
+            alert(
+            "Message could not be sent. Please try again."
+            );
+
+        })
+
+        .finally(() => {
+
+            submitBtn.disabled =
+            false;
+
+            submitBtn.innerText =
+            "Send Inquiry";
+
+        });
 
     });
 
 }
-
 /* ===================================
    BACK TO TOP BUTTON
 =================================== */

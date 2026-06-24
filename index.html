@@ -1031,22 +1031,32 @@ referrerpolicy="strict-origin-when-cross-origin">
             class="honeypot">
             <input
             type="text"
+            id="name"
+            name="name"
             placeholder="Your Name"
             required>
 
             <input
             type="email"
+            id="email"
+            name="email"
             placeholder="Email Address"
             required>
 
             <input
             type="tel"
+            id="phone"
+            name="phone"
             placeholder="Phone Number"
             required>
 
             <textarea
+            id="message"
+            name="message"
             rows="5"
-            placeholder="Your Message"></textarea>
+            placeholder="Your Message"
+            required>
+            </textarea>
 
             <button
             type="submit">
@@ -1074,7 +1084,7 @@ FOOTER
     <div class="footer-logo">
 
         <img
-        src="images/logo.png"
+        src="images/logo.jpeg"
         alt="Logo">
 
         <h3>
@@ -1143,7 +1153,7 @@ target="_blank">
 <i class="fab fa-whatsapp"></i>
 
 </a>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="script.js"></script>
 
 </body>
