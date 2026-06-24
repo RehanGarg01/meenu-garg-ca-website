@@ -265,11 +265,13 @@ function activeLink(){
 /* ===================================
    EMAILJS CONTACT FORM
 =================================== */
+let lastSubmission = 0;
+emailjs.init({
 
-emailjs.init(
+    publicKey:
     "v0j06FaIi4N71PUig"
-);
 
+});
 const contactForm =
 document.querySelector(
 ".contact-form"
@@ -306,12 +308,7 @@ if(contactForm){
         "button"
         );
 
-        submitBtn.disabled =
-        true;
-
-        submitBtn.innerText =
-        "Sending...";
-
+        
         const templateParams = {
 
             name:
@@ -339,6 +336,60 @@ if(contactForm){
             .toLocaleString()
 
         };
+        
+
+/* Cooldown */
+
+const now = Date.now();
+
+if(
+    now - lastSubmission < 30000
+){
+
+    alert(
+    "Please wait 30 seconds before submitting again."
+    );
+
+    return;
+
+}
+
+/* Email Check */
+
+const email =
+document.getElementById(
+"email"
+).value.toLowerCase();
+
+const blockedDomains = [
+
+    "tempmail.com",
+    "10minutemail.com",
+    "guerrillamail.com"
+
+];
+
+if(
+
+    blockedDomains.some(
+        domain =>
+        email.endsWith(domain)
+    )
+
+){
+
+    alert(
+        "Temporary email addresses are not allowed."
+    );
+
+    return;
+
+}
+        submitBtn.disabled =
+        true;
+
+        submitBtn.innerText =
+        "Sending...";
 
         emailjs.send(
 
@@ -352,13 +403,22 @@ if(contactForm){
 
         .then(() => {
 
-            alert(
-            "Thank you for contacting M/s Meenu Garg & Co. We will get back to you shortly."
-            );
+    lastSubmission =
+    Date.now();
 
-            contactForm.reset();
+    alert(
+    "Thank you for contacting M/s Meenu Garg & Co. We will get back to you shortly."
+    );
 
-        })
+    contactForm.reset();
+
+    if(window.turnstile){
+
+        turnstile.reset();
+
+    }
+
+})
 
         .catch((error) => {
 
