@@ -1521,3 +1521,30 @@ body{
     display:block;
 
 }
+.testimonial-stars{
+
+    color:#d4a017;
+
+    font-size:1.2rem;
+
+    margin-bottom:15px;
+
+}
+
+.google-review-cta{
+
+    text-align:center;
+
+    margin-top:40px;
+
+}
+
+.google-review-cta p{
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+    color:#555;
+
+}
