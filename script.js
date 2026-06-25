@@ -552,40 +552,277 @@ window.addEventListener(
 
 }
 );
-/* ==========================
-   FAQ ACCORDION
-========================== */
-console.log("FAQ JS loaded");
+/* ==================================================
+                KNOWLEDGE CENTRE
+================================================== */
+
+const categoryButtons =
+document.querySelectorAll(".category-btn");
+
 const faqQuestions =
-document.querySelectorAll(
-".faq-question"
-);
+document.querySelectorAll(".faq-question");
 
-faqQuestions.forEach(question => {
+const faqSearch =
+document.getElementById("faqSearch");
 
-    question.addEventListener(
-    "click",
-    () => {
+/* ======================================
+      CATEGORY ACCORDION
+====================================== */
 
-        const answer =
-        question.nextElementSibling;
+categoryButtons.forEach(button=>{
 
-        if(answer.style.maxHeight){
+button.addEventListener(
+"click",
+()=>{
 
-            answer.style.maxHeight =
-            null;
+const content =
+button.nextElementSibling;
 
-        }
+const isOpen =
+button.classList.contains("active");
 
-        else{
+/* Close all */
 
-            answer.style.maxHeight =
-            answer.scrollHeight +
-            "px";
+categoryButtons.forEach(btn=>{
 
-        }
+btn.classList.remove("active");
 
-    });
+btn.nextElementSibling.style.maxHeight = null;
 
 });
 
+/* Open current */
+
+if(!isOpen){
+
+button.classList.add("active");
+
+content.style.maxHeight =
+content.scrollHeight + "px";
+
+}
+
+});
+
+});
+
+/* ======================================
+      QUESTION ACCORDION
+====================================== */
+
+faqQuestions.forEach(question=>{
+
+question.addEventListener(
+"click",
+()=>{
+
+const answer =
+question.nextElementSibling;
+
+const isOpen =
+question.classList.contains("active");
+
+const category =
+question.closest(".category-content");
+
+/* Close others in same category */
+
+category.querySelectorAll(".faq-question")
+.forEach(q=>{
+
+q.classList.remove("active");
+
+q.nextElementSibling.style.maxHeight = null;
+
+});
+
+/* Open */
+
+if(!isOpen){
+
+question.classList.add("active");
+
+answer.style.maxHeight =
+answer.scrollHeight + "px";
+
+/* Update category height */
+
+setTimeout(()=>{
+
+category.style.maxHeight =
+category.scrollHeight + "px";
+
+},350);
+
+}
+
+});
+
+});
+
+/* ======================================
+      SEARCH
+====================================== */
+
+if(faqSearch){
+
+faqSearch.addEventListener(
+"keyup",
+()=>{
+
+const value =
+faqSearch.value.toLowerCase().trim();
+
+const categories =
+document.querySelectorAll(".faq-category");
+
+categories.forEach(category=>{
+
+const items =
+category.querySelectorAll(".faq-item");
+
+let visible = 0;
+
+items.forEach(item=>{
+
+const text =
+item.innerText.toLowerCase();
+
+if(text.includes(value)){
+
+item.style.display="block";
+
+visible++;
+
+}else{
+
+item.style.display="none";
+
+}
+
+});
+
+const button =
+category.querySelector(".category-btn");
+
+const content =
+category.querySelector(".category-content");
+
+if(visible>0){
+
+category.style.display="block";
+
+button.classList.add("active");
+
+content.style.maxHeight =
+content.scrollHeight + "px";
+
+}else{
+
+category.style.display="none";
+
+button.classList.remove("active");
+
+content.style.maxHeight = null;
+
+}
+
+});
+
+/* Reset */
+
+if(value===""){
+
+categories.forEach(category=>{
+
+category.style.display="block";
+
+category.querySelector(".category-btn")
+.classList.remove("active");
+
+category.querySelector(".category-content")
+.style.maxHeight = null;
+
+category.querySelectorAll(".faq-item")
+.forEach(item=>{
+
+item.style.display="block";
+
+});
+
+});
+
+}
+
+});
+
+}
+
+/* ======================================
+      ESC TO CLEAR SEARCH
+====================================== */
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.key==="Escape" &&
+faqSearch
+){
+
+faqSearch.value="";
+
+faqSearch.dispatchEvent(
+new Event("keyup")
+);
+
+}
+
+});
+
+/* ======================================
+      KEYBOARD SUPPORT
+====================================== */
+
+document.querySelectorAll(
+".category-btn,.faq-question"
+).forEach(button=>{
+
+button.addEventListener(
+"keydown",
+e=>{
+
+if(
+
+e.key==="Enter" ||
+
+e.key===" "
+
+){
+
+e.preventDefault();
+
+button.click();
+
+}
+
+});
+
+});
+
+/* ======================================
+      OPEN FIRST CATEGORY
+====================================== */
+
+window.addEventListener(
+"load",
+()=>{
+
+if(categoryButtons.length){
+
+categoryButtons[0].click();
+
+}
+
+});
