@@ -162,7 +162,7 @@ ul{
 
 .logo-text span{
 
-    color:var(--gold);
+    color:var(--primary);
 
     font-size:.9rem;
 
@@ -263,7 +263,7 @@ ul{
 .hero-tag{
 
     color:var(--gold);
-
+font-size: larger;
     font-weight:600;
 
 }
@@ -450,31 +450,59 @@ ul{
 
 }
 
-.experience-badge{
+.achievement-grid{
 
-    position:absolute;
+    display:grid;
 
-    bottom:-20px;
+    grid-template-columns:repeat(2,1fr);
 
-    left:-20px;
+    gap:20px;
+
+}
+
+.achievement-card{
 
     background:var(--primary);
 
     color:white;
 
-    padding:25px;
+    padding:30px 20px;
 
-    border-radius:16px;
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
 
 }
 
-.experience-badge span{
+.achievement-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.achievement-card span{
 
     display:block;
 
     font-size:2rem;
 
     font-weight:700;
+
+    margin-bottom:10px;
+
+    color:var(--gold);
+
+}
+
+.achievement-card p{
+
+    font-size:.95rem;
+
+    line-height:1.5;
 
 }
 
@@ -1371,15 +1399,6 @@ body{
 
     }
 
-    .experience-badge{
-
-        position:static;
-
-        margin-top:20px;
-
-        text-align:center;
-
-    }
 
     .contact-form{
 
@@ -1546,5 +1565,21 @@ body{
     font-weight:600;
 
     color:#555;
+
+}
+.hero-subtitle{
+    margin-top:10px;
+    font-size:1.1rem;
+    color:#6F3B12;
+    font-weight:500;
+}
+
+@media(max-width:768px){
+
+    .achievement-grid{
+
+        grid-template-columns:1fr;
+
+    }
 
 }
